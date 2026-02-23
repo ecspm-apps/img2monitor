@@ -69,7 +69,7 @@ void main() async {
   await initializeService();
   
   final prefs = await SharedPreferences.getInstance();
-  final isDarkMode = prefs.getBool('isDarkMode') ?? false;
+  final isDarkMode = prefs.getBool('isDarkMode') ?? true; // Default to true (Dark Mode)
   themeNotifier.value = isDarkMode ? ThemeMode.dark : ThemeMode.light;
   
   runApp(const MyApp());
@@ -118,6 +118,7 @@ class MyApp extends StatelessWidget {
           ),
           darkTheme: ThemeData(
             colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue, brightness: Brightness.dark),
+            scaffoldBackgroundColor: const Color(0xFF0F172A), // Matches native splash screen
             useMaterial3: true,
           ),
           themeMode: currentMode,
